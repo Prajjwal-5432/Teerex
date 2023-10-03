@@ -1,13 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
+import { SnackbarProvider } from "notistack";
+import store from "./app/store";
+import { Provider } from "react-redux";
+import "./index.css";
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <BrowserRouter>
+        <SnackbarProvider
+          maxSnack={1}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "center",
+          }}
+          preventDuplicate
+        >
+          <App />
+        </SnackbarProvider>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
